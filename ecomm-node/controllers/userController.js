@@ -32,6 +32,7 @@ const signup = async (req, res) => {
 
 const signin = async (req, res) => {
   const { email, pass } = req.body;
+  // console.log(email,pass)
   try {
     const existingUser = await userModel.findOne({ email: email });
     if (!existingUser) {

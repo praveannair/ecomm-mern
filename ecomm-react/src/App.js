@@ -1,38 +1,32 @@
-// import "./styles.css";
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./Components/Header-Footer/Navbar";
-import Register from "./Components/Auth/Register";
-import Login from "./Components/Auth/Login";
-import Logout from "./Components/Auth/Logout";
-import Cart from "./Components/Cart/Cart";
-import Products from "./Components/Products/Products";
-import Orders from "./Components/Orders/Orders";
-import Cards from "./Components/Products/Cards";
-import Footer from "./Components/Header-Footer/Footer";
-import GoogleAuth from "./Components/Auth/GAuth";
-import Temp from "./Components/Temp"
+import Products from "./components/product/Products.js";
+import Cart from "./components/cart/Cart.js";
+import Navbar from "./components/navbar/Navbar.js";
+import Login from "./components/user/Login.js";
+import Footer from "./components/footer/Footer.js";
+import Orders from "./components/order/Orders.js";
+import Register from "./components/user/Register.js";
+
 
 function App() {
   const PATH = process.env.REACT_APP_PATH;
+
   return (
     <div className="App">
       <Router>
-        <Navbar />
+           <Navbar />
+        <hr></hr>
         <Routes>
-          <Route path={`${PATH}/temp`} element={<Temp/>}></Route>
-          <Route path={`${PATH}`} element={<Products />} />
+          <Route path={`${PATH}/`} element={<Products />} />
+          <Route path={`${PATH}/order`} element={<Orders />} />
+          <Route path={`${PATH}/cart`} element={<Cart />} />
           <Route path={`${PATH}/login`} element={<Login />} />
           <Route path={`${PATH}/register`} element={<Register />} />
-          <Route path={`${PATH}/logout`} element={<Logout />} />
-          <Route path={`${PATH}/cart`} element={<Cart />} />
-          <Route path={`${PATH}/orders`} element={<Orders />} />
-          <Route path={`${PATH}/gauth`} element={<GoogleAuth />} />
         </Routes>
+        <Footer />
       </Router>
-      <hr className="m-0" />
-      <Footer />
     </div>
   );
 }
-
 export default App;

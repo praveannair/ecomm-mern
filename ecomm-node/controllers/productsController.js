@@ -1,10 +1,11 @@
 import productModel from "../models/productsModel.js";
 
 const addProduct = async (req, res) => {
-  const { name, price, url } = req.body;
+  const { name, price, desc, url } = req.body;
   try {
     const createProduct = await productModel.create({
       name: name,
+      desc: desc,
       price: price,
       url: url,
     });
@@ -17,11 +18,11 @@ const addProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const id = req.params.pid;
-  const { name, price, url } = req.body;
+  const { name, desc, price, url } = req.body;
   try {
     const product = await productModel.findByIdAndUpdate(
       id,
-      { name: name, price: price, url: url },
+      { name: name, desc:desc, price: price, url: url },
       { new: true }
     );
     res.status(200).json(product);
