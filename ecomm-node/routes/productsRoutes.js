@@ -1,11 +1,15 @@
-import e from "express";
+import express from "express";
+import auth from '../middlewares/auth.js'
+const app = express()
 import {
   addProduct,
   removeProduct,
   showProducts,
   updateProduct,
 } from "../controllers/productsController.js";
-const productRouter = e.Router();
+const productRouter = express.Router();
+
+app.use(auth)
 
 productRouter.get("/all", showProducts);
 productRouter.post("/add", addProduct);

@@ -17,14 +17,22 @@ export default function Login() {
   const Navigate = useNavigate();
   const API = process.env.REACT_APP_API;
   const validateUser = async () => {
-   console.log(user)
+    console.log(user);
     const found = await axios.post(`${API}/users/signin`, user);
-    // console.log(found1)
+    console.log(found.data.user.name);
     // const found = users.find(
     //   (elem) => elem.email === user.email && elem.pass === user.pass
     // );
     if (found) {
-      setUser((prev) => ({ ...prev, name: found.name }));
+      // setUser((prev) => ({ ...prev, name: found.name }));
+      setUser((prev) => ({
+        ...prev,
+        id: found.data.user._id,
+        name: found.data.user.name,
+        email: found.data.user.email,
+        role: found.data.user.role,
+        token: found.data.token,
+      }));
       setFlag(() => 2);
       Navigate(`${PATH}/cart`);
     } else setMsg(() => "Invalid email or password");
